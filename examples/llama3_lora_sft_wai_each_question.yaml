@@ -1,6 +1,5 @@
 ### model
-model_name_or_path: /storage/home/westlakeLab/lianqi/Models/LLM-Research/Meta-Llama-3.1-8B-Instruct
-#model_name_or_path: /storage/home/westlakeLab/lianqi/ClientResistance/LLaMA-Factory/saves/Qwen2.5-7B-Instruct/sft_lora_5e7_epoch10
+model_name_or_path: <your model path>
 
 ### method
 stage: sft
@@ -19,7 +18,7 @@ overwrite_cache: true
 preprocessing_num_workers: 16
 
 ### output
-output_dir: /storage/home/westlakeLab/lianqi/ClientResistance/LLaMA-Factory/saves/Meta-Llama-3.1-8B-Instruct/sft_lora_5e7_epoch10_wai_each_question_fold0_seed123
+output_dir: <your output path>
 logging_steps: 10
 save_steps: 200
 plot_loss: true
