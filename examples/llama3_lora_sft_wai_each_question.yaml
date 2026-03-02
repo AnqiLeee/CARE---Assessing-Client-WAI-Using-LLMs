@@ -1,0 +1,49 @@
+### model
+model_name_or_path: /storage/home/westlakeLab/lianqi/Models/LLM-Research/Meta-Llama-3.1-8B-Instruct
+#model_name_or_path: /storage/home/westlakeLab/lianqi/ClientResistance/LLaMA-Factory/saves/Qwen2.5-7B-Instruct/sft_lora_5e7_epoch10
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: all
+seed: 123
+
+### dataset
+# qwen1.5-110b_sft, wai_sft_baseline
+dataset: wai_each_question_fold0
+template: llama3 #qwen;llama3
+cutoff_len: 8192
+max_samples: 20000 #20000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: /storage/home/westlakeLab/lianqi/ClientResistance/LLaMA-Factory/saves/Meta-Llama-3.1-8B-Instruct/sft_lora_5e7_epoch10_wai_each_question_fold0_seed123
+logging_steps: 10
+save_steps: 200
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+learning_rate: 5.0e-7
+num_train_epochs: 10.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+optim: adamw_torch
+
+### eval
+#val_size: 0.1
+#per_device_eval_batch_size: 1
+#eval_strategy: steps
+#eval_steps: 200
+val_size: 0
+
+# command:
+# CUDA_VISIBLE_DEVICES=4,5,6,7 nohup llamafactory-cli train examples/train_lora/llama3_lora_sft_wai_each_question.yaml >sft_lora_5e7_epoch10_wai_each_question_fold0_seed123.log 2>&1 &
+
+
